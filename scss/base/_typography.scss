@@ -1,0 +1,15 @@
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Oswald", sans-serif;
+  color: map-get($color, primary)
+}
+p{
+  font-family: "Roboto", sans-serif;
+  color: map-get($color, primary)
+}
+a {
+  font-family: "Roboto", sans-serif;
+  color: map-get($color, secondary)
+}

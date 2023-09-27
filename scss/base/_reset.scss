@@ -1,0 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+body {
+  @include content__bg(none);
+}

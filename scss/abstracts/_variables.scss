@@ -1,0 +1,49 @@
+//despues borro las variables
+// $colorPrimary: silver;
+// $colorSecondary: aqua;
+// $colorNavActive: lightblue;
+// $colorNavfocus: blue;
+// $colorBg: rgb(77, 77, 77);
+$maxWidth: 1440px;
+$boxSm: 300px;
+$boxXl: 1200px;
+
+
+
+//mapa de colores
+$color: (
+  primary: silver,
+  secondary: aqua,
+  active: lightblue,
+  focus: blue,
+  bg: rgb(77, 77, 77),
+  box1: rgb(193, 219, 44, .3),
+  box2: rgb(192, 117, 4, .3),
+  box3: rgb(238, 25, 174, .3),
+  pros: rgba(0, 255, 0, .5),
+  cons: rgba(255, 0, 0, .5),
+  dark: rgba(0, 0, 0, .5),
+  light: rgba(255, 255, 255, .5),
+  mario: rgba(201, 55, 55, 0.35),
+  pikachu: rgba(255, 255, 0, 0.26),
+  dk: rgba(102, 51, 0, 0.45),
+  kirby: rgba(240, 72, 203, 0.26),
+);
+// Colores de personajes
+$chara: (
+  mario: rgba(201, 55, 55, 0.26),
+  pikachu: rgba(255, 255, 0, 0.26),
+  dk: rgba(102, 51, 0, 0.452),
+  kirby: rgba(240, 72, 203, 0.438),
+);
+
+
+
+@-webkit-keyframes mover {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(10px); }
+}
+@keyframes mover {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(10px); }
+}

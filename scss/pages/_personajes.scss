@@ -1,0 +1,113 @@
+.char__bg {
+  max-width: $maxWidth;
+  margin: 0 auto;
+  justify-content: center;
+  overflow: hidden;
+  // Fondos de imagen del personaje
+  #slide-1{
+    .char__img{
+      background-color: map-get($color, mario);
+    }
+  }
+  #slide-2{
+    .char__img{
+      background-color: map-get($color, pikachu);
+    }
+  }
+  #slide-3{
+    .char__img{
+      background-color: map-get($color, dk);
+    }
+  }
+  #slide-4{
+    .char__img{
+      background-color: map-get($color, kirby);
+    }
+  }
+  #slide-1,
+  #slide-2,
+  #slide-3,
+  #slide-4 {
+    font-size: 1em;
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      "content1"
+      "content2"
+      "content3";
+    // Caja de imagen del personaje
+    .char__img {
+      grid-area: content1;
+      justify-self: center;
+      width: 300px;
+      display: flex;
+      img {
+        -webkit-animation: mover 1s infinite alternate;
+        animation: mover 1s infinite alternate;
+      }
+    }
+    // Texto descriptivo del personaje
+    .char__content {
+      grid-area: content2;
+      background-color: map-get($color, dark);
+      border-radius: 25px;
+    }
+    // Cajas de pros y contras del personaje
+    .char__pros {
+      grid-area: content3;
+      display: flex;
+      justify-content: center;
+      div {
+        padding: 10px;
+      }
+      .pros {
+        border-radius: 25px;
+        background-color: map-get($color, pros);
+      }
+      .cons {
+        border-radius: 25px;
+        background-color: map-get($color, cons);
+      }
+    }
+  }
+}
+  @media (min-width: 768px) {
+    .char__bg {
+      font-size: 1.5em;
+      .slider{
+        height: 95vh;
+      }
+      #slide-1,
+      #slide-2,
+      #slide-3,
+      #slide-4 {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+          "content1 content2"
+          "content3 content3";
+        .char__img {
+          width: auto;
+          height: auto;
+          object-fit: cover;
+          border-radius: 25px;
+        }
+
+        .char__text {
+          background-color: map-get($color, dark);
+        }
+        .char__pros {
+          .pros {
+            border-radius: 25px;
+            background-color: map-get($color, pros);
+          }
+          .cons {
+            border-radius: 25px;
+            background-color: map-get($color, cons);
+          }
+        }
+      }
+    }
+  }
+

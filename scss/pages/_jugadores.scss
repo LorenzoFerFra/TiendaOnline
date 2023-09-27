@@ -1,0 +1,96 @@
+.jugadores__bg {
+  max-width: $maxWidth;
+  margin: 0 auto;
+  text-align: center;
+.mkleo__container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  height: 150vh;
+  grid-template-areas:
+    "content1"
+    "content2"
+    "content3"
+    "content4"
+    "content5";
+
+
+  #content1 {
+    @include img__container(content1);
+  }
+  .mkleo__text{
+    background-color: map-get($color,dark );
+    border-radius: 25px;
+  }
+  #content2 {
+    grid-area: content2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #content3 {
+    @include img__container(content3);
+    background-color: map-get($color, box1);
+  }
+  #content4 {
+    @include img__container(content4);
+    background-color: map-get($color, box2);
+  }
+  #content5 {
+    @include img__container(content5);
+    background-color: map-get($color, box3);
+  }
+}
+.hbox__container{
+  margin-top: 10vh;
+  img{
+    width: 150px;
+  }
+  .hbox__text{
+    background-color: map-get($color ,dark );
+    border-radius: 50px;
+    font-size: 1em;
+  }
+}
+@media (min-width: 576px){
+  .mkleo__container #content1, .mkleo__container #content3, .mkleo__container #content4, .mkleo__container #content5{
+    img{
+      width: 250px;
+    }
+  }
+  .hbox__container{
+    img{
+      width: 250px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .mkleo__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100vh;
+    grid-template-areas:
+      "content1 content2 content2"
+      "content3 content4 content5";
+    #content1, #content2, #content3, #content4, #content5 {
+      img{
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+    }
+  } 
+}
+.hbox__container{
+  img{
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+}
+}
+}

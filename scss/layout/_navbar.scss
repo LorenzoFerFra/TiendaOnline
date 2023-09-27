@@ -1,0 +1,27 @@
+.navbar-expand-md {
+  background-color: map-get($color, bg) !important;
+}
+.logo {
+  width: 35px;
+}
+.navbar .navbar-expand-md {
+  padding: 0;
+}
+.navbar a {
+  color: map-get($color, secondary);
+  font-family: "Oswald", sans-serif;
+  font-size: 1.5em;
+}
+.navbar-nav .nav-link.active {
+  color: lightblue;
+}
+.nav-link:hover {
+  color: map-get($color, focus);
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+.navbar-brand:focus,
+.navbar-brand:hover {
+  color: map-get($color, secondary);
+}

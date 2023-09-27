@@ -1,0 +1,19 @@
+
+.footer__content {
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: map-get($color , bg);
+  .footer__links, .footer__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer__media{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
