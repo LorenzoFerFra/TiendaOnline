@@ -16,6 +16,10 @@
     <title>DatoSmash</title>
     <!--CSS bootstrap-->
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <!--Fontawsome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--CSS-->
     <link rel="stylesheet" href="../css/main.css" />
     <!--AOS library-->
@@ -39,7 +43,7 @@
     <header>
       <nav class="navbar navbar-expand-md bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="../index.html">
             <img
               class="logo"
               src="../assets/img/favicon.png"
@@ -97,18 +101,63 @@
                 <a class="nav-link" href="./contacto.html" data-aos-delay="450"
                 data-aos="fade-right">Contacto</a>
               </li>
-            </ul>
+              <li class="nav-item">
+                    <!-- Boton carrito -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <i class="fa-solid fa-cart-shopping"></i>
+                  </button>
+              </li>
+             </ul>
           </div>
         </div>
       </nav>
     </header>
     <main>
-
-      <img
-      src="../assets/img/peluche.webp"
-      alt="spinner dorado punto jpg"  />
-
+      <h1>Tienda Online</h1>
+      <section  id="tiendaContainer">
+        <!-- <div class="card" style="width: 32rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h2 class="card-title">Titulo</h2>
+            <p class="card-text">Descripcion.</p>
+            <p class="card-text">Precio.</p>
+            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+          </div>
+        </div> -->
+        <!-- <img
+        src="../assets/img/peluche.webp"
+        alt="koishi fumo"  /> id="tiendaContainer"
+        <img
+        src="../assets/img/spinner.webp"
+        alt="spinner dorado punto jpg"  />
+        <img
+        src="../assets/img/procontroller.webp"
+        alt="pro controller"  />
+        <img
+        src="../assets/img/nintendo_switch.webp"
+        alt="Consola nintendo switch"  /> -->
+      </section>
     </main>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     <footer>
       <!--Footer con copyright e iconos de redes sociales-->
       <section class="footer__content container-fluid">
@@ -192,7 +241,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();
-    </script>
-    <script src="./app.js"></script>
+    </script>|
+    <script src="../app.js"></script>
   </body>
 </html>
