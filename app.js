@@ -31,12 +31,12 @@ class Producto{
     descripcionProducto(){
         return `
         <div class="card" style="width: 32rem;">
-        <img src="${producto.img}" class="card-img-top" alt="${producto.alt}">
+        <img src="${this.img}" class="card-img-top" alt="${this.alt}">
         <div class="card-body">
-          <h2 class="card-title">${producto.nombre}</h2>
-          <p class="card-text">${producto.descripcion}</p>
-          <p class="card-text">$${producto.precio}</p>
-          <a href="#" class="btn btn-primary">Agregar al carrito</a>
+          <h2 class="card-title">${this.nombre}</h2>
+          <p class="card-text">${this.descripcion}</p>
+          <p class="card-text">$${this.precio}</p>
+          <button class="btn btn-primary" id="ap-${this.id}">Agregar al carrito</a>
         </div>
       </div>` 
     }
@@ -53,10 +53,10 @@ class Carrito{
         }
     }
     mostrarProductos() {
-        let tiendaContainer = document.getElementById("tiendaContainer")
-        tiendaContainer.innerHTML = ""
+        let contenedor_carrito = document.getElementById("contenedor_carrito")
+        contenedor_carrito.innerHTML = ""
         this.listaCarrito.forEach(producto => {
-            tiendaContainer.innerHTML += producto.descripcionCarrito();
+            contenedor_carrito.innerHTML += producto.descripcionCarrito();
         })
     }
     // calcularTotal(){
@@ -75,8 +75,10 @@ class ProductController{
         }
     }
     cargarProductos(){
-        this.agregar( new producto(1,"Peluche", 50000, "Muñeco de peluche fumo de koishi de touhou proyect", "../assets/img/peluche.webp", "koishi fumo"))
-    }
+        this.agregar( new Producto(1,"Peluche", 50000, "Muñeco de peluche fumo de koishi de touhou proyect", "../assets/img/peluche.webp", "koishi fumo") )
+        this.agregar(new Producto(2,"Spinner", 600, "Muñeco de peluche fumo de koishi de touhou proyect", "../assets/img/spinner.webp", "koishi fumo") )
+        this.agregar(new Producto(3, "ryzen 7", 250, "Un microprocesador de gama alta", "https://m.media-amazon.com/images/I/51D3DrDmwkL.__AC_SX300_SY300_QL70_ML2_.jpg", "un microprocesador amd") )
+     }
 
     //mostrar productos en DOM
     mostrarProductos(){
@@ -100,20 +102,6 @@ class ProductController{
         return this.listaProductos.find(producto => producto.id == id)
     }
 }
-
-// //instanciar productos
-// const p1 = new Producto(1,"Peluche", 50000, "Muñeco de peluche fumo de koishi de touhou proyect", "../assets/img/peluche.webp", "koishi fumo") 
-// const p2 = new Producto(2,"Spinner", 600, "Muñeco de peluche fumo de koishi de touhou proyect", "img", "koishi fumo") 
-// const p3 = new Producto(3,"Joystick", 15000, "Muñeco de peluche fumo de koishi de touhou proyect", "../assets/img/peluche.webp", "koishi fumo") 
-// const p4 = new Producto(4,"Peluche", 40000, "Muñeco de peluche fumo de koishi de touhou proyect", "img", "koishi fumo") 
-// const p5 = new Producto(5,"Kazoo", 600, "Muñeco de peluche fumo de koishi de touhou proyect", "img", "koishi fumo") 
-
-// //mostrar los productos
-// controladorP.agregar(p1)
-// controladorP.agregar(p2)
-// controladorP.agregar(p3)
-// controladorP.agregar(p4)
-// controladorP.agregar(p5)
 
 const CP = new ProductController()
 const carrito = new Carrito()
