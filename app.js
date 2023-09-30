@@ -10,7 +10,7 @@ class Producto{
         
     }
 
-    descripcionCarrito(){
+    carritoHTML(){
         return `
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
@@ -22,7 +22,7 @@ class Producto{
                         <h3 class="card-title">${this.nombre}</h3>
                         <p class="card-text">Cantidad: ${this.cantidad}</p>
                         <p class="card-text">Precio: ${this.precio}</p>
-                        <button class="btn borrar_Btn" id="borrar_compra-${this.id}">
+                        <button class="btn borrar_Btn" id="borrarCompra-${this.id}">
                             <i class="fa-regular fa-trash-can"></i>
                     </button>
                     </div>
@@ -30,7 +30,9 @@ class Producto{
             </div>
         </div>`
     }
-
+//     <button class="btn borrar_Btn" id="borrarCompra-${this.id}">
+//     <i class="fa-regular fa-trash-can"></i>
+// </button>
     descripcionProducto(){
         return `
         <div class="card" style="width: 32rem;">
@@ -44,7 +46,6 @@ class Producto{
       </div>` 
     }
 }
-
 class Carrito{
     constructor() {
         this.listaCarrito = []
@@ -55,12 +56,17 @@ class Carrito{
             this.listaCarrito.push(producto)
         }
     }
+    eliminar(p){
+        let indice = this.listaCarrito.findIndex(producto => producto.id == p.id)
+        this.listaCarrito.splice(indice,1)
+    } 
     mostrarCarrito() {
         let contenedor_carrito = document.getElementById("contenedor_carrito")
         contenedor_carrito.innerHTML = ""
         this.listaCarrito.forEach(producto => {
-            contenedor_carrito.innerHTML += producto.descripcionCarrito();
+            contenedor_carrito.innerHTML += producto.carritoHTML();
         })
+        this.eliminarCompra()
     }
         //Convertir a json y guardar el carrito en storage
     carritoStorage(){
@@ -77,13 +83,28 @@ class Carrito{
             listaTemp.push(nuevoProducto)
         })
         this.listaCarrito = listaTemp
+
+
+
     }
-        
+    //eliminar producto del carrito
+    eliminarCompra(){
+        this.listaCarrito.forEach(producto => {
+            const eliminar_producto = document.getElementById(`borrarCompra-${producto.id}`)
+            eliminar_producto.addEventListener("click", ()=>{
+                this.eliminar(producto)
+                this.carritoStorage()
+                this.mostrarCarrito()
+            })
+        })
+    }
+    
+       // calcularTotal(){
+       //     return this.listaCarrito.reduce( (total,producto) => total + producto.precio * producto.cantidad ,0)
+       // }
+    //final carrito
     }
  
-    // calcularTotal(){
-    //     return this.listaCarrito.reduce( (total,producto) => total + producto.precio * producto.cantidad ,0)
-    // }
 
 
 class ProductController{
@@ -116,6 +137,7 @@ class ProductController{
             btn_ap.addEventListener("click",()=>{
                 carrito.agregar(producto)
                 carrito.carritoStorage()
+                carrito.carritoCargar()
                 carrito.mostrarCarrito()
             })
         })
@@ -126,30 +148,11 @@ class ProductController{
     }
 }
 
-
-
-// let carritoStorage = [
-//      new Producto(1,"fumo", 50000, "Muñeco de peluche fumo de koishi de touhou proyect", "../assets/img/peluche.webp", "koishi fumo"),
-//      new Producto(2,"Spinner", 600, "Un spinner dorado ", "../assets/img/spinner.webp", "spinner dorado") ,
-//      new Producto(3,"Sasdasdas", 600, "Un spinner dorado ", "../assets/img/spinner.webp", "spinner dorado") ,
-// ]
-
-// let carritoStorageJSON = JSON.stringify(carritoStorage)
-// localStorage.setItem("carritoJSON", carritoStorageJSON)
-
-// let listaCarritoJSON = localStorage.getItem("carritoJSON")
-// let listaCarritoJS = JSON.parse(listaCarritoJSON)
-// let listaTemp = []
-// listaCarritoJS.forEach( producto => {
-//     let nuevoProducto = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.img, producto.alt)
-//     listaTemp.push(nuevoProducto)
-// })
-// carritoJSON = listaTemp
-// console.log(carritoJSON)
-
+//crear las instancias de productocontroller y carrito, y cargarlas
 const CP = new ProductController()
 const carrito = new Carrito()
 
+carrito.carritoStorage()
 carrito.carritoCargar()
 carrito.mostrarCarrito()
 
