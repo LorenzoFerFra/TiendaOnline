@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="../css/main.css" />
     <!--AOS library-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!--SWEET2ALERT CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css">
+    <!--TOASTIFY CSS-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Font titulos (oswald semibold 600) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -122,14 +126,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Carrito de compras</h1>
+                    <h2 class="modal-title fs-5" id="exampleModalLabel">Carrito de compras</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="contenedor_carrito">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir viendo</button>
-                    <button type="button" class="btn btn-primary">Comprar</button>
+                  <p class="col-12" id="precio_total"> Precio total de la compra:</p>
+                  <p class="col-12"> Metodo de pago:</p>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
+
+                    <button type="button" class="btn btn-primary" id="confrimar_compra">Confrimar compra</button>
                 </div>
             </div>
         </div>
@@ -213,6 +220,10 @@
     </footer>
     <!--JS bootstrap-->
     <script src="../js/bootstrap.bundle.min.js"></script>
+    <!--CDN SWEET2ALERT JS-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+    <!--CDN TOASTIFY JS-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!--AOS java script-->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>

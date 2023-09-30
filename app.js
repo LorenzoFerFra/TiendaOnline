@@ -60,6 +60,9 @@ class Carrito{
         let indice = this.listaCarrito.findIndex(producto => producto.id == p.id)
         this.listaCarrito.splice(indice,1)
     } 
+    vaciarCarrito() {
+        this.listaCarrito = []
+    }
     mostrarCarrito() {
         let contenedor_carrito = document.getElementById("contenedor_carrito")
         contenedor_carrito.innerHTML = ""
@@ -95,6 +98,21 @@ class Carrito{
                 this.eliminar(producto)
                 this.carritoStorage()
                 this.mostrarCarrito()
+            })
+        })
+    }
+    //Confirmar y realizar la compra de los productos en el carrito
+    confirmarCompra(){
+        const comprarProductos = document.getElementById("confrimar_compra")
+        comprarProductos.addEventListener("click", () => {
+            localStorage.setItem(this.localStorageKey, "[]")
+            this.vaciarCarrito()
+            this.mostrarCarrito()
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Compra finalizada, sus productos llegaran algun dia... tal vez... no cuentes con ello',
+                timer: 3000
             })
         })
     }
@@ -140,8 +158,7 @@ class ProductController{
                 carrito.carritoCargar()
                 carrito.mostrarCarrito()
             })
-        })
-        
+        })   
     }
     buscarId(id){
         return this.listaProductos.find(producto => producto.id == id)
@@ -152,9 +169,9 @@ class ProductController{
 const CP = new ProductController()
 const carrito = new Carrito()
 
-carrito.carritoStorage()
 carrito.carritoCargar()
 carrito.mostrarCarrito()
+carrito.confirmarCompra()
 
 CP.cargarProductos()
 CP.mostrarProductos()
