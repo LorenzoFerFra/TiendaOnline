@@ -49,6 +49,7 @@ class Producto{
 class Carrito{
     constructor() {
         this.listaCarrito = []
+        this.localStorageKey = "listaCarrito"
     }
 
     agregar(producto) {
@@ -56,12 +57,16 @@ class Carrito{
             this.listaCarrito.push(producto)
         }
     }
-    eliminar(p){
-        let indice = this.listaCarrito.findIndex(producto => producto.id == p.id)
+    eliminar(productoAeliminar){
+        let indice = this.listaCarrito.findIndex(producto => producto.id == productoAeliminar.id)
         this.listaCarrito.splice(indice,1)
     } 
     vaciarCarrito() {
         this.listaCarrito = []
+        //this.localStorageKey = "listaCarrito"
+        //localStorage.setItem("carritoJSON", listaCarrito)
+        //localStorage.clear();
+
     }
     mostrarCarrito() {
         let contenedor_carrito = document.getElementById("contenedor_carrito")
@@ -74,11 +79,11 @@ class Carrito{
         //Convertir a json y guardar el carrito en storage
     carritoStorage(){
         let listaCarritoJSON = JSON.stringify(this.listaCarrito)
-        localStorage.setItem("carritoJSON", listaCarritoJSON)
+        localStorage.setItem(this.localStorageKey, listaCarritoJSON)
     }
         //Volver a convertir los JSON a objetos
     carritoCargar(){
-        let listaCarritoJSON = localStorage.getItem("carritoJSON")
+        let listaCarritoJSON = localStorage.getItem(this.localStorageKey)
         let listaCarritoJS = JSON.parse(listaCarritoJSON)
         let listaTemp = []
         listaCarritoJS.forEach( producto => {
@@ -86,8 +91,6 @@ class Carrito{
             listaTemp.push(nuevoProducto)
         })
         this.listaCarrito = listaTemp
-
-
 
     }
     //eliminar producto del carrito
@@ -108,12 +111,19 @@ class Carrito{
             localStorage.setItem(this.localStorageKey, "[]")
             this.vaciarCarrito()
             this.mostrarCarrito()
+            const entregaEstimada = now.plus({ days: 5 })
             Swal.fire({
                 position: 'center',
-                icon: 'success',
-                title: 'Compra finalizada, sus productos llegaran algun dia... tal vez... no cuentes con ello',
+                icon: 'success',    //entregaEstimada.toFormat('dd/MM/yyyy')
+                title: 'Compra finalizada, sus productos llegaran en 5 dias, el ... tal vez... no cuentes con ello. Fecha estimada:'+entregaEstimada.toFormat('dd/MM/yyyy'),
                 timer: 3000
             })
+            // Swal.fire({
+            //     position: 'center',
+            //     icon: 'info',
+            //     title: 'No tenes nada en el carrito',
+            //     timer: 3000
+            // })
         })
     }
     
@@ -137,8 +147,9 @@ class ProductController{
     }
     //cargar productos al dom
     cargarProductos(){
-        this.agregar( new Producto(1,"fumo", 50000, "Muñeco de peluche fumo de koishi de touhou proyect", "../assets/img/peluche.webp", "koishi fumo") )
+        this.agregar(new Producto(1,"fumo", 50000, "Muñeco de peluche fumo de koishi de touhou proyect", "../assets/img/peluche.webp", "koishi fumo") )
         this.agregar(new Producto(2,"Spinner", 600, "Un spinner dorado ", "../assets/img/spinner.webp", "spinner dorado") )
+        this.agregar(new Producto(3, "ryzen 7", 250, " gama alta", "https://m.media-amazon.com/images/I/51D3DrDmwkL.__AC_SX300_SY300_QL70_ML2_.jpg", "un microprocesador amd") )
         this.agregar(new Producto(3, "ryzen 7", 250, " gama alta", "https://m.media-amazon.com/images/I/51D3DrDmwkL.__AC_SX300_SY300_QL70_ML2_.jpg", "un microprocesador amd") )
      }
 
@@ -157,11 +168,26 @@ class ProductController{
                 carrito.carritoStorage()
                 carrito.carritoCargar()
                 carrito.mostrarCarrito()
+                this.toastifyAlert()
             })
         })   
     }
     buscarId(id){
         return this.listaProductos.find(producto => producto.id == id)
+    }
+    toastifyAlert(){
+        Toastify({
+            text: "Se añadio el producto a tu carrito!",
+            duration: 2500,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                color: "black",
+                background: "aqua"
+                //background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
     }
 }
 
@@ -175,5 +201,11 @@ carrito.confirmarCompra()
 
 CP.cargarProductos()
 CP.mostrarProductos()
+
+let DateTime = luxon.DateTime;
+const now = DateTime.now();
+const entregaEstimada = now.plus({ days: 5 })
+console.log ( DateTime.now().toFormat('dd/MM/yyyy') )
+console.log  (entregaEstimada.toFormat('dd/MM/yyyy'))
 
 
