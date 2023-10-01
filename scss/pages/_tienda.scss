@@ -4,3 +4,9 @@
 .fa-regular{
     color: map-get($color ,dark );
 }
+.card{
+    background-color: map-get($color ,cons );
+}
+#tiendaContainer{
+    justify-content: center;
+}
