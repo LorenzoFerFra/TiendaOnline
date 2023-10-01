@@ -1,0 +1,74 @@
+[
+    {
+       "id":1,
+       "nombre":"fumo",
+       "precio":50000,
+       "descripcion":"Muñeco de peluche fumo de koishi de touhou proyect",
+       "cantidad":1,
+       "img":"../assets/img/peluche.webp",
+       "alt":"koishi fumo"
+    },
+    {
+       "id":2,
+       "nombre":"Amiibo mario",
+       "precio":30000,
+       "descripcion":"Un muñeco amiibo de mario, capaz de ser conectado a tu nintendo switch para juguar contigo ",
+       "cantidad":1,
+       "img":"../assets/img/amiibo_ma.webp",
+       "alt":"Amiibo de mario"
+    },
+    {
+       "id":3,
+       "nombre":"procontroller",
+       "precio":50000,
+       "descripcion":"Controll classico para nintendo swich, similar al tipico de xbox o playstation",
+       "cantidad":1,
+       "img":"../assets/img/procontroller.webp",
+       "alt":"koishi fumo"
+    },
+    {
+       "id":4,
+       "nombre":"Amiibo pikachu",
+       "precio":30000,
+       "descripcion":"Un muñeco amiibo de pikachu, capaz de ser conectado a tu nintendo switch para juguar contigo",
+       "cantidad":1,
+       "img":"../assets/img/amiibo_pi.webp",
+       "alt":"Amiibo de pikachu"
+    },
+    {
+       "id":5,
+       "nombre":"Amiibo Donkey kong",
+       "precio":22000,
+       "descripcion":"Un muñeco amiibo de Donkeykong, capaz de ser conectado a tu nintendo switch para juguar contigo",
+       "cantidad":1,
+       "img":"../assets/img/amiibo_dk.webp",
+       "alt":"Amiibo de donkeykong"
+    },
+    {
+       "id":6,
+       "nombre":"Amiibo Kirby",
+       "precio":25000,
+       "descripcion":"Un muñeco amiibo de kirby, capaz de ser conectado a tu nintendo switch para juguar contigo",
+       "cantidad":1,
+       "img":"../assets/img/amiibo_ki.webp",
+       "alt":"Amiibo de kirby"
+    },
+    {
+       "id":7,
+       "nombre":"Spinner",
+       "precio":600,
+       "descripcion":"Un spinner dorado ",
+       "cantidad":1,
+       "img":"../assets/img/spinner.webp",
+       "alt":"spinner dorado"
+    },
+    {
+       "id":8,
+       "nombre":"Kazoo",
+       "precio":50000,
+       "descripcion":"El instrumento mas facil de usar, el kazoo",
+       "cantidad":1,
+       "img":"../assets/img/kazoo.webp",
+       "alt":"Kazoo de color dorado"
+    }
+ ]
