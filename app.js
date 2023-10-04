@@ -195,6 +195,7 @@ class Carrito {
     });
   }
 
+
   calcularTotal() {
     return this.listaCarrito.reduce(
       (acumulador, producto) =>
@@ -219,13 +220,21 @@ class ProductController {
       this.listaProductos.push(producto);
     }
   }
+  // Simula la carga del server con una promesa con timeout de 2 segundos
+  simularServidor(){
+    return new Promise ( (resolve, reject) => {
+      setTimeout(async () => {
+        let listaProductosJSON = await fetch("../productos.json");
+        let listaProductosJS = await listaProductosJSON.json();
+        resolve(listaProductosJS)
+      }, 2000)
+    })
+  }
 
-  //manejarContenedorP
-  //agarra productos de la simulacion de la api, y los carcga asincronicamente
-  async manejarContenedorP() {
-    let listaProductosJSON = await fetch("../productos.json");
-    let listaProductosJS = await listaProductosJSON.json();
-
+  //agarra productos de la simulacion de la api, y los carga asincronicamente
+  async manejarContenedorP(listaProductosJS) {
+    // let listaProductosJSON = await fetch("../productos.json");
+    // let listaProductosJS = await listaProductosJSON.json();
     listaProductosJS.forEach((p) => {
       let nuevoProducto = new Producto(
         p.id,
@@ -250,7 +259,7 @@ class ProductController {
     this.listaProductos.forEach((producto) => {
       const btn_ap = document.getElementById(`ap-${producto.id}`);
 
-      btn_ap.addEventListener("click", () => {
+      btn_ap.addEventListener("click", () => { 
         carrito.agregar(producto);
         carrito.carritoStorage();
         carrito.carritoCargar();
@@ -278,11 +287,17 @@ class ProductController {
   }
 }
 //crear las instancias de productocontroller y carrito, y cargarlas
+
 const CP = new ProductController();
 const carrito = new Carrito();
+
+CP.simularServidor()
+  .then((listaProductosJS) => {
+    CP.manejarContenedorP(listaProductosJS)
+  })
 
 carrito.carritoCargar();
 carrito.mostrarCarrito();
 carrito.confirmarCompraListener();
 
-CP.manejarContenedorP();
+//CP.manejarContenedorP();
