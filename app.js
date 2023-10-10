@@ -30,6 +30,8 @@ class Producto {
                     <div class="card-body">
                         <h3 class="card-title">${this.nombre}</h3>
                         <p class="card-text">Cantidad: ${this.cantidad}</p>
+                        <button class="btn btn-dark" id="disminuir_producto-${this.id}"><i class="fa-solid fa-minus"></i></button>
+                        <button class="btn btn-dark" id="agregar_producto-${this.id}"><i class="fa-solid fa-plus"></i></button>
                         <p class="card-text">Precio: ${this.precio}</p>
                         <button class="btn borrar_Btn" id="borrarCompra-${this.id}">
                             <i class="fa-regular fa-trash-can"></i>
@@ -46,11 +48,6 @@ class Producto {
         <div class="card-body producto_bg">
           <h2 class="card-title">${this.nombre}</h2>
           <p class="card-text">${this.descripcion}</p>
-          <p class="card-text">Cantidad:
-          <button class="btn btn-dark" id="disminuir_producto-${this.id}"><i class="fa-solid fa-minus"></i></button>
-          ${this.cantidad}
-          <button class="btn btn-dark" id="agregar_producto-${this.id}"><i class="fa-solid fa-plus"></i></button>
-          </p>
           <p class="card-text">$${this.precio}</p>
           <button class="btn btn-primary" id="ap-${this.id}">Agregar al carrito</a>
         </div>
@@ -120,13 +117,14 @@ class Carrito {
         producto.precio,
         producto.descripcion,
         producto.img,
-        producto.alt
+        producto.alt,
+        producto.cantidad
       );
       listaTemp.push(nuevoProducto);
     });
     this.listaCarrito = listaTemp;
   }
-  //eliminar producto del carrito
+  //event lisentner boton eliminar producto del carrito
   eliminarCompra() {
     this.listaCarrito.forEach((producto) => {
       const eliminar_producto = document.getElementById(
