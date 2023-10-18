@@ -13,7 +13,7 @@ class Producto {
     this.cantidad++;
   }
   disminuirCantidad() {
-    //this.cantidad = this.cantidad - 1
+    //reduicir la cantidad total en -1
     if (this.cantidad > 1) {
       this.cantidad--;
     }
@@ -30,8 +30,8 @@ class Producto {
                     <div class="card-body">
                         <h3 class="card-title">${this.nombre}</h3>
                         <p class="card-text">Cantidad: ${this.cantidad}</p>
-                        <button class="btn btn-dark" id="disminuir_producto-${this.id}"><i class="fa-solid fa-minus"></i></button>
-                        <button class="btn btn-dark" id="agregar_producto-${this.id}"><i class="fa-solid fa-plus"></i></button>
+                        <button class="btn btn-dark" id="reducir_cantidad-${this.id}"><i class="fa-solid fa-minus"></i></button>
+                        <button class="btn btn-dark" id="aumentar_cantidad-${this.id}"><i class="fa-solid fa-plus"></i></button>
                         <p class="card-text">Precio: ${this.precio}</p>
                         <button class="btn borrar_Btn" id="borrarCompra-${this.id}">
                             <i class="fa-regular fa-trash-can"></i>
@@ -96,8 +96,8 @@ class Carrito {
       contenedor_carrito.innerHTML += producto.carritoHTML();
     });
     this.eliminarCompra();
-    // this.eventoAumentarCantidad()
-    // this.eventoDisminuirCantidad()
+    this.eventoAumentarCantidad()
+    this.eventoReducirCantidad()
     this.mostrarTotal();
   }
   //Convertir a json y guardar el carrito en storage
@@ -137,25 +137,27 @@ class Carrito {
       });
     });
   }
-  // eventoAumentarCantidad() {
-  //     this.listaCarrito.forEach(producto => {
-  //         const btn_aumentar = document.getElementById(`agregar_producto-${producto.id}`)
-  //         btn_aumentar.addEventListener("click", () => {
-  //             producto.aumentarCantidad()
-  //             this.mostrarCarrito()
-  //         })
-  //     })
-  // }
+  //event lisenter para los botones de aumentar cantidad
+  eventoAumentarCantidad() {
+      this.listaCarrito.forEach(producto => {
+          const btn_aumentarC = document.getElementById(`aumentar_cantidad-${producto.id}`)
+          btn_aumentarC.addEventListener("click", () => {
+              producto.aumentarCantidad()
+              this.mostrarCarrito()
+          })
+      })
+  }
 
-  // eventoDisminuirCantidad() {
-  //     this.listaCarrito.forEach(producto => {
-  //         const btn_disminuir = document.getElementById(`disminuir_producto-${producto.id}`)
-  //         btn_disminuir.addEventListener("click", () => {
-  //             producto.disminuirCantidad()
-  //             this.mostrarCarrito()
-  //         })
-  //     })
-  // }
+  //event lisenter para los botones de reducir cantidad
+  eventoReducirCantidad() {
+      this.listaCarrito.forEach(producto => {
+          const btn_reducirC = document.getElementById(`reducir_cantidad-${producto.id}`)
+          btn_reducirC.addEventListener("click", () => {
+              producto.disminuirCantidad()
+              this.mostrarCarrito()
+          })
+      })
+  }
   
   //lisenter del boton con operador ternario que cancela la compra si esta vacio el carrito
   confirmarCompraListener() {
@@ -269,6 +271,7 @@ class ProductController {
   buscarId(id) {
     return this.listaProductos.find((producto) => producto.id == id);
   }
+  //tostify alert que se muestra al comprar un producto, no pude hacer que se actualize la cantidad
   toastifyAlert(producto) {
     Toastify({
       text: `Se ha añadido ${producto.nombre} a tu carrito!, tienes un total de: ${producto.cantidad}  de este producto`,
